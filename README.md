@@ -10,13 +10,64 @@ swaps, quote swaps, and only the encodings the target provably decodes).
 > Authorized testing only. Scan systems you own or have written permission
 > to test.
 
-## Install
+## Installation
+
+Prerequisites: Python 3.8 or newer, `pip`, and git. Check yours first:
+
+```bash
+python3 --version   # needs 3.8+
+pip --version
+```
+
+**1. Clone and enter the project**
+
+```bash
+git clone https://github.com/Rushikesh362/PawXssScanner.git
+cd PawXssScanner
+```
+
+**2. (Recommended) Use a virtual environment** so the dependency never
+clashes with system packages:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate        # Windows: venv\Scripts\activate
+```
+
+**3. Install the one dependency**
 
 ```bash
 pip install -r requirements.txt
 ```
 
-The only dependency is `requests`. Python 3.8+.
+**4. Verify it works**
+
+```bash
+python3 pawxss.py --help        # prints all flags
+python3 tests/test_pawxss.py    # 38 offline tests, expect OK
+```
+
+**5. (Optional) Run it from anywhere**
+
+```bash
+chmod +x pawxss.py
+sudo ln -s "$PWD/pawxss.py" /usr/local/bin/pawxss
+pawxss -u "https://target.com/search?q=test" -p "$PWD/payloads.txt"
+```
+
+Note: `-p` defaults to `payloads.txt` in the current directory, so when
+running via the symlink either `cd` into the project first or pass the full
+payload path as shown above.
+
+**Troubleshooting**
+
+| Problem | Fix |
+|---|---|
+| `No module named requests` | Step 3 was skipped, or `pip` belongs to a different Python than `python3`. Re-run it as `python3 -m pip install -r requirements.txt`. |
+| `can't open file 'pawxss.py'` | Wrong directory. `cd` into the cloned `PawXssScanner` folder first. |
+| `payload file ... has no usable lines` | The `-p` path is wrong or the file is empty. Pass the full path to `payloads.txt`. |
+| Lab uses a self-signed certificate | Test over plain HTTP instead, or add the lab CA to the system trust store. |
+| Everything times out | The target may be rate-limiting you. Lower `--threads`, add `--delay 1`, raise `--timeout 30`. |
 
 ## Usage
 
