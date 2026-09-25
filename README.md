@@ -71,11 +71,14 @@ payload path as shown above.
 
 ## Usage
 
+<img width="1695" height="962" alt="image" src="https://github.com/user-attachments/assets/4d4e57b4-9e0c-4d3c-86a7-eddd174e7b3d" />
+
+
 ```bash
 # basic scan
 python3 pawxss.py -u "https://target.com/search?q=test" -p payloads.txt
 
-![Uploading image.png…]()
+
 
 
 # scan with reports
