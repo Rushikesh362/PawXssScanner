@@ -75,6 +75,9 @@ payload path as shown above.
 # basic scan
 python3 pawxss.py -u "https://target.com/search?q=test" -p payloads.txt
 
+![Uploading image.png…]()
+
+
 # scan with reports
 python3 pawxss.py -u "https://target.com/search?q=test" --json out.json -o out.txt -v
 
