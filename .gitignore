@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+results*.json
+results*.txt
+PawXss*.txt
+out.json
+out.txt
+out.*
+.venv/
+venv/
